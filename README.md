@@ -1,7 +1,7 @@
 Spanish Keyboard
 ================
 
-A simple  web-based tool to write accents and special characters in Spanish and Catalan languages. Very helpful when you need to write an email in Spanish and your keyboard is in English.
+A simple web-based tool to write accents and special characters in Spanish and Catalan with an English keyboard. Very helpful when you need to write an email in Spanish and your keyboard is in English.
 
 Text is also stored in local storage automatically so you don't loose your work.
 
