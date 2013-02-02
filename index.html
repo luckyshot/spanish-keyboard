@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>International keyboard (Spanish, Catalan)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>body {margin:0;}textarea {width: 92%;margin: 0 auto;font-size: 16px;padding: 4%;line-height: 1.2em;font-family:Garamond,serif;border:none;height:1000px;}</style>
+</head>
+<body>
+
+<textarea name="tx" id="tx">Para escribir un carácter especial pon una coma delante y luego escribe la letra.
+Para escribir acentos abiertos pon una coma y escribe la letra dos veces.
+El texto se guarda a medida que escribes, puedes cerrar la ventana y abrirla más tarde.</textarea>
+
+<script type="text/javascript">
+	// TODO: Performance improvement - Instead of preg_replacing the whole text, store last keystroke in buffer and detect combination?
+	var find =    [',a',',e',',i',',o',',u',',n',',A',',E',',I',',O',',U',',N',',!',',?','áa','ée','íi','óo','úu','ÉE','ÏI','ÓO','ÚU',',c',',C'];
+	var replace = ['á', 'é', 'í', 'ó', 'ú', 'ñ', 'Á', 'É', 'Í', 'Ó', 'Ú', 'Ñ', '¡', '¿', 'à', 'è', 'ï', 'ò', 'ü', 'È', 'Ï', 'Ò', 'Ü', 'ç', 'Ç'];
+	var txj = document.getElementById('tx');
+
+	txj.addEventListener('keyup', function(event){
+		var ss = txj.selectionStart;
+		var se = txj.selectionEnd;
+		
+		var length = txj.value.length;
+		for (var i = 0; i < find.length; i++) {
+			txj.value = txj.value.replace(find[i], replace[i]);
+		}
+		txj.selectionStart = ss - (length-txj.value.length);
+		txj.selectionEnd = se - (length-txj.value.length);
+		localStorage.setItem('editores', txj.value);
+	});
+
+	txj.focus();
+
+	if (localStorage.getItem('editores')) {
+		txj.value = localStorage.getItem('editores');
+	}
+</script>
+</body>
+</html>
